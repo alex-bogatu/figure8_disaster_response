@@ -14,9 +14,9 @@ The project includes a web app where an emergency worker can input a new message
 
 Below are a few screenshots of the web made available by the project.
 
-![Landing pange](images/disaster-respnse-1.png)
+![Landing pange](images/disaster-response-1.png)
 
-![Search results page](images/disaster-respnse-2.png)
+![Search results page](images/disaster-response-2.png)
 
 ## Instructions for running the project:
 1. Run the following commands in the [project's root directory](./webapp/workspace) to set up a new database and model.
