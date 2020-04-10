@@ -12,7 +12,7 @@ The project creates a machine learning pipeline to classify existing messages so
 
 The project includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also displays visualizations of the data. 
 
-Below are a few screenshots of the web made available by the project.
+Below are a few screenshots of the web app made available by the project.
 
 ![Landing pange](images/disaster-response-1.png)
 
