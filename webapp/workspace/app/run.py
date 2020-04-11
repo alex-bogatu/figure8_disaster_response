@@ -39,33 +39,49 @@ model = joblib.load("../models/classifier.pkl")
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
+    sorted_cat = df.iloc[:, 4:].sum(axis=0).sort_values()
+    top_10_values = sorted_cat[-10:][::-1].tolist()
+    top_10_cat_names = sorted_cat[-10:][::-1].index.tolist()
+    
+    type_distribution_values = sorted_cat.tolist()
+    type_distribution_names = sorted_cat.index.tolist()
     
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
                 Bar(
-                    x=genre_names,
-                    y=genre_counts
+                    x=top_10_values,
+                    y=top_10_cat_names,
+                    orientation='h'
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Top 10 Category Types',
                 'yaxis': {
-                    'title': "Count"
+                    'title': "Category"
                 },
                 'xaxis': {
-                    'title': "Genre"
+                    'title': "Count"
                 }
             }
+        },
+        
+        {
+            'data': [
+                Pie(
+                    values=type_distribution_values,
+                    labels=type_distribution_names,
+                )
+            ],
+
+            'layout': {
+                'title': 'Message types'
+            }
         }
-    ]
-    
+    ]    
+ 
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
